@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mon Portfolio</title>
+    <link rel="stylesheet" href="se_présenter.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#">Mes Compétences</a>
+                    <div class="dropdown-content">
+                        <a href="Administrer.html">U1 :Administrer les réseaux et Internet</a>
+                        <a href="Connecter.html">U2: Connecter les entreprises et les usagers</a>
+                        <a href="Programer.html">U3: Créer des outils et applications informatiques pour les R&T</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact">
+        <h1>Contactez-moi</h1>
+        <p>Si vous avez des questions ou si vous souhaitez discuter d'une collaboration, n'hésitez pas à m'envoyer un message via le formulaire ci-dessous.</p>
+
+        <form action="#" method="POST" class="contact-form">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Votre email" required>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
+
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </section>
+
+    <section class="contact-info">
+        <h2>Informations de contact</h2>
+        <p>Vous pouvez également me contacter par email ou via les réseaux sociaux.</p>
+        <ul>
+            <li>Email : <a href="mailto:guillaume.baudrey@uha.fr">guillaume.baudrey@uha.fr</a></li>
+            <li>LinkedIn : <a href="https://www.linkedin.com/in/guillaume-baudrey-9aa1ab262" target="_blank">https://www.linkedin.com/in/guillaume-baudrey</a></li>
+            <li>GitHub : <a href="https://github.com/Guillaume-9" target="_blank">https://github.com/Guillaume-9</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mon Portfolio | Tous droits réservés</p>
+    </footer>
+
+</body>
+</html>
