@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guillaume B. | Cyber Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+            --cyber-red: #ff4d4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+
+        /* --- Header avec Photo --- */
+        header {
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #112240 0%, #0a0b10 100%);
+            padding: 20px;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            object-fit: cover;
+        }
+
+        .hero-text { text-align: left; }
+        .hero-text h1 { font-size: 3.5rem; color: var(--accent-color); text-transform: uppercase; }
+        .hero-text p { font-family: monospace; font-size: 1.2rem; color: var(--secondary-text); }
+
+        /* --- Navigation Filtres --- */
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 40px 0;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .btn-filter {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px 22px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-filter.active, .btn-filter:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* --- Grille de Projets --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #30363d;
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            width: fit-content;
+            font-weight: bold;
+        }
+
+        /* Couleurs des Tags */
+        .tag-admin { background: #238636; color: white; }
+        .tag-connect { background: #1f6feb; color: white; }
+        .tag-program { background: #8957e5; color: white; }
+        .tag-cyber { background: var(--cyber-red); color: white; }
+
+        .project-card h3 { margin-bottom: 12px; font-size: 1.4rem; }
+        .project-card p { color: var(--secondary-text); font-size: 0.95rem; flex-grow: 1; }
+
+        .hidden { display: none; }
+
+        @media (max-width: 768px) {
+            .hero-text { text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            header { height: auto; padding: 60px 20px; }
+        }
+
+        .lien{
+            color: #e6edf3;
+        }
+        .cv-card {
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+        }
+        .cv-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+        .cv-header {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="hero-container">
+            <img src="images/photo cercle.jpg" alt="Guillaume Baudrey" class="profile-img">
+            <div class="hero-text">
+                <p>> Hello_World, je suis</p>
+                <h1>Guillaume B.</h1>
+                <p>Étudiant Réseaux/Télécom & Cybersécurité</p>
+                <a href="moi.html" class="lien">A propos de moi</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="portfolio">
+        <div class="filter-buttons">
+            <button class="btn-filter active" onclick="filterSelection('all')">Tous les projets</button>
+            <button class="btn-filter" onclick="filterSelection('admin')">Administrer</button>
+            <button class="btn-filter" onclick="filterSelection('connect')">Connecter</button>
+            <button class="btn-filter" onclick="filterSelection('program')">Programmer</button>
+            <button class="btn-filter" onclick="filterSelection('cyber')">CyberSécurité</button>
+        </div>
+
+        <div class="projects-grid">
+
+            <div class="project-card cv-card">
+                <a href="images/CV.pdf" target="_blank" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                    <div class="cv-header">
+                        <i class="fas fa-file-pdf" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+                        <h3>Mon Curriculum Vitae</h3>
+                    </div>
+                    
+                    <p style="color: var(--secondary-text); font-size: 0.9rem; margin-top: 10px;">
+                        Consultez mon parcours détaillé, mes formations et mes expériences en Réseaux & Télécoms.
+                    </p>
+
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 20px; font-weight: bold;">
+                        <i class="fas fa-external-link-alt"></i> Ouvrir le PDF
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card admin">
+                <a href="sae101.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-admin">Administrer</span>
+                    <h3>SAE 101 : Sensibilisation aux cyberattaques par ingénierie sociale</h3>
+                    <p>Réalisation d'une vidéo de prévention sur une attaque d'ingénierie sociale choisi lors de nos cours.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-arrow-right"></i> Description & résultats du projet
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card admin">
+                <a href="sae102.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-admin">Administrer</span>
+                    <h3>SAE 102 : Administration d'un réseau d'entreprise</h3>
+                    <p>Installation et configuration de serveurs Web et FTP sécurisés. Mise en place de l'infrastructure logicielle d'une entreprise.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-arrow-right"></i> Voir le projet
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card admin">
+                <a href="sae302.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-admin">Administrer</span>
+                    <h3>SAE 302 : Architecture distribuée & Routage en oignon</h3>
+                    <p>Nous avons créé une communication en oignon, anonyme et sécurisé.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-arrow-right"></i> Analyser le projet
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card connect">
+                <a href="sae103.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-connect">Connecter</span>
+                    <h3>SAE 103 : Analyse et déploiement de réseaux Wi-Fi</h3>
+                    <p>Conception d'une infrastructure réseau physique et mesurer la qualité du signal  </p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-network-wired"></i> Découvrir l'infrastructure physique →
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card connect">
+                <a href="sae301.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-connect">Connecter</span>
+                    <h3>SAE 301 : Prise Connectée Intelligente Wifi</h3>
+                    <p>Nous avons codé une prise éléctrique intéligente controlable depuis un site web ou une application android.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-project-diagram"></i> Explorer l'architecture complexe →
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card program">
+                <a href="sae104.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-program">Programmer</span>
+                    <h3>SAE 104 : Création d'un site web portfolio</h3>
+                    <p>Développement et programmer un site web personnel présentant mon curriculum vitæ et mes projets.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-code"></i> Analyser le portfolio →
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card program">
+                <a href="sae105.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-program">Programmer</span>
+                    <h3>SAE 105 : Développement d'un outil de reporting pour l'analyse de disque</h3>
+                    <p>Conception d'un script capable d'analiser et supprimer des fichiers lourds sur un disque dur données.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-database"></i> Explorer le traitement de données →
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card program">
+                <a href="sae302.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-program">Programmer</span>
+                    <h3>SAE 302 : Architecture distribuée & Routage en oignon</h3>
+                    <p>Ce projet est dans la compétence Administrer et programmer c'est pour cela que je remet la même page pour figuration.</p>
+                    <span style="color: var(--accent-color); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-terminal"></i> Voir les scripts d'automatisation →
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card cyber">
+                <a href="sae303.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-cyber">Sécuriser</span>
+                    <h3>SAE 303 : Concevoir un réseau informatique sécurisé multi-sites</h3>
+                    <p>On a dû réaliser et concevoir un réseau d'une petite entreprise entre trois maquettes GNS3 entre une maquette client, une partie routage et une partie serveur.</p>
+                    <span style="color: var(--cyber-red); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-shield-virus"></i> Analyser la défense périmétrique →
+                    </span>
+                </a>
+            </div>
+
+            <div class="project-card cyber">
+                <a href="sae304.html" style="text-decoration: none; color: inherit;">
+                    <span class="tag tag-cyber">Sécuriser</span>
+                    <h3>SAE 304 : Découvrir le pentesting</h3>
+                    <p>Nous avons eu un avant gout du pentesting en utilisant le site Root-me.pro avec un module prés fait.</p>
+                    <span style="color: var(--cyber-red); font-size: 0.85rem; margin-top: auto; padding-top: 15px; display: block;">
+                        <i class="fas fa-search-plus"></i> Consulter le rapport d'audit →
+                    </span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 60px 20px; border-top: 1px solid #30363d; margin-top: 50px;">
+        <p style="color: var(--secondary-text);">© 2026 Guillaume Baudrey - Étudiant BUT R&T Colmar</p>
+    </footer>
+
+    <script>
+        function filterSelection(c) {
+            let x = document.getElementsByClassName("project-card");
+            let btns = document.getElementsByClassName("btn-filter");
+            
+            // Mise à jour de la classe active sur les boutons
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+                if (btns[i].innerText.toLowerCase().includes(c.toLowerCase()) || (c === 'all' && btns[i].innerText.includes('Tous'))) {
+                    btns[i].classList.add("active");
+                }
+            }
+
+            // Filtrage des cartes
+            for (let i = 0; i < x.length; i++) {
+                x[i].classList.add("hidden");
+                if (c === "all" || x[i].classList.contains(c)) {
+                    x[i].classList.remove("hidden");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos | Guillaume Baudrey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #ff4d4d;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: auto; }
+
+        .back-btn { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: 0.2s; }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-color); transform: translateX(-5px); }
+
+        .profile-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .profile-header { display: flex; align-items: center; gap: 30px; border-bottom: 1px solid #30363d; padding-bottom: 30px; margin-bottom: 30px; }
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent-color); object-fit: cover; box-shadow: 0 0 15px var(--accent-color); }
+        .profile-intro h1 { color: var(--accent-color); font-size: 2.5rem; }
+        .profile-intro p { font-family: monospace; color: var(--secondary-text); font-size: 1.1rem; }
+
+        h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin: 35px 0 20px 0; font-size: 1.5rem; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .info-item { background: #0d1117; padding: 20px; border-radius: 10px; border-top: 2px solid var(--accent-color); }
+        .info-item h4 { color: var(--accent-color); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+
+        .timeline { border-left: 2px solid #30363d; margin-left: 20px; padding-left: 20px; }
+        .timeline-event { position: relative; margin-bottom: 30px; }
+        .timeline-event::before { content: ""; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-color); box-shadow: 0 0 8px var(--accent-color); }
+        .event-date { font-weight: bold; color: var(--accent-color); font-family: monospace; }
+
+        .passion-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .passion-tag { background: rgba(255, 77, 77, 0.1); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 5px; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="images/photo cercle.jpg" alt="Guillaume Baudrey" class="profile-pic"> <div class="profile-intro">
+                    <h1>Guillaume Baudrey</h1>
+                    <p>> Étudiant en Réseaux & Télécommunications</p>
+                    <p>> Passionné par la Cybersécurité & la Programation</p>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-user"></i> À propos de moi</h2>
+            <p>Actuellement étudiant en 2ème année de <strong>BUT Réseaux et Télécommunications</strong> à l'IUT de Colmar. Je m'intéresse particulièrement à la conception d'architectures réseaux sécurisées et à l'administration système. Mon parcours est guidé par une curiosité constante pour les nouvelles technologies et les défis techniques complexes.</p>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4><i class="fas fa-heart"></i> Mes Passions</h4>
+                    <p>Au-delà de l'informatique, je suis passionné par :</p>
+                    <div class="passion-tags">
+                        <span class="passion-tag">Photographie</span>
+                        <span class="passion-tag">Volley-Ball</span>
+                        <span class="passion-tag">BodyBoard</span>
+                        <span class="passion-tag">Jeu de rôle</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <h4><i class="fas fa-code-branch"></i> Philosophie</h4>
+                    <p>"L'apprentissage par la pratique est le meilleur moyen de maîtriser les systèmes complexes."</p>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-graduation-cap"></i> Mon Parcours</h2>
+            <div class="timeline">
+                <div class="timeline-event">
+                    <span class="event-date">2025 - Présent</span>
+                    <h4>BUT Réseaux et Télécommunications</h4>
+                    <p>IUT de Colmar - Université de Haute-Alsace. Spécialisation en administration réseau, cybersécurité et virtualisation.</p>
+                </div>
+                <div class="timeline-event">
+                    <span class="event-date">2022</span>
+                    <h4>Baccalauréat Général</h4>
+                    <p>Spécialités Mathématiques et physique Chimie.</p>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-envelope"></i> Me Contacter</h2>
+            <p>Vous pouvez me retrouver sur mes différents réseaux pour échanger sur des projets ou des opportunités professionnelles.</p>
+            <div class="passion-tags" style="margin-top: 20px;">
+                <a href="https://www.linkedin.com/in/guillaume-baudrey-9aa1ab262" style="text-decoration:none; color:inherit;"><span class="passion-tag"><i class="fab fa-linkedin"></i> LinkedIn</span></a>
+                <a href="https://github.com/guillaume-8" style="text-decoration:none; color:inherit;"><span class="passion-tag"><i class="fab fa-github"></i> GitHub</span></a>
+                <a href="mailto:guillaume.baudrey@uha.fr" style="text-decoration:none; color:inherit;"><span class="passion-tag"><i class="fas fa-envelope"></i> guillaume.baudrey@uha.fr</span></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

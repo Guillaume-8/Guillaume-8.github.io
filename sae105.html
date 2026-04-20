@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 105 | Guillaume Baudrey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+            --sql-orange: #ffb86c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: auto; }
+
+        .back-btn { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: 0.2s; }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-color); transform: translateX(-5px); }
+
+        .report-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .header-report { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-report h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
+
+        .tech-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tech-pill { background: #21262d; border: 1px solid #30363d; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--sql-orange); font-weight: bold; }
+
+        h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin: 35px 0 15px 0; font-size: 1.5rem; }
+
+        .sql-window {
+            background: #1e1e1e;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 1px solid #333;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .sql-header {
+            background: #333;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sql-content {
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+            color: #dcdcdc;
+        }
+
+        .sql-key { color: #569cd6; font-weight: bold; }
+        .sql-table { color: #4ec9b0; }
+        .sql-string { color: #ce9178; }
+
+        .data-box {
+            border: 1px solid #30363d;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 212, 255, 0.02);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+
+        <div class="report-card">
+            <div class="header-report">
+                <span style="color: var(--accent-color); font-family: monospace;">[ COMPÉTENCE : PROGRAMMER / DATA ]</span>
+                <h1>SAE 105 : Développement d'un outil de reporting pour l'analyse de disque</h1>
+                
+                <div class="tech-tags">
+                    <span class="tech-pill">PowerShell</span>
+                    <span class="tech-pill">Analyse de données</span>
+                    <span class="tech-pill">Fichiers CSV/JSON</span>
+                    <span class="tech-pill">Python</span>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-microchip" style="color: var(--accent-color);"></i> Objectifs du projet</h2>
+            <p>Création d'un outil permettant d'identifier et localiser les fichiers volumineux sur un disque dur pour optimiser l'espace de stockage.</p>
+
+            <h2><i class="fas fa-vial" style="color: var(--accent-color);"></i> Fonctionnalités clés développées</h2>
+            <ul>
+                <p>Le projet intègre une analyse récursive complète de l'arborescence des répertoires, permettant d'explorer chaque sous-dossier en profondeur. Cette exploration aboutit à l'identification précise des 100 fichiers les plus volumineux, basée sur un seuil de taille entièrement personnalisable par l'utilisateur. Pour faciliter l'exploitation des données, l'outil génère un rapport JSON structuré et propose une interface graphique intuitive incluant une visualisation en camembert. La navigation est optimisée par un système de légendes paginées avec cases à cocher, complété par une fonctionnalité de génération automatique de scripts PowerShell dédiés à la suppression sécurisée des fichiers sélectionnés.</p>
+            </ul>
+
+            <h2><i class="fas fa-computer" style="color: var(--accent-color);"></i> Technologies maîtrisées</h2>
+            <p>Le développement de cette solution repose sur un socle technique solide :</p>
+            <ul>
+                <li><strong>Python :</strong> utilisé comme langage principal pour le traitement complexe des fichiers et le tri performant des données.</li>
+                <li><strong>PyQt5 :</strong> pour la conception d'une interface graphique moderne et interactive.</li>
+                <li><strong>JSON :</strong> employé pour assurer un stockage et un échange de données structuré et léger.</li>
+                <li><strong>PowerShell :</strong> intégré pour l'automatisation système et l'exécution des tâches d'administration.</li>
+                <li><strong>Bibliothèque pathlib :</strong> mise en œuvre pour garantir une gestion multi-plateforme rigoureuse des chemins de fichiers.</li>
+            </ul>
+
+            <h2><i class="fas fa-gear" style="color: var(--accent-color);"></i> Composants techniques</h2>
+            <p>L'architecture de l'application s'articule autour de trois piliers majeurs:</p>
+            <ul>
+                <li><strong>Script PowerShell :</strong>Il assure l'orchestration globale du processus de l'application.</li>
+                <li><strong>Analyseur Python :</strong> Ce moteur effectue le parcours récursif, le tri décroissant par taille de fichier, ainsi que le filtrage selon les seuils définis (1Mo, 10Mo, etc.) avant d'exporter les résultats au format JSON.</li>
+                <li><strong>Interface graphique :</strong> Elle offre un camembert interactif pour visualiser la répartition des fichiers, des légendes paginées (25 éléments par page), et un système de cases à cocher permettant la sélection précise des fichiers en vue de la génération de scripts de suppression.</li>
+            </ul>
+
+            <h2><i class="fas fa-key" style="color: var(--accent-color);"></i> Apprentissages clés</h2>
+            <p>Ce projet m'a permis de développer des compétences avancées en traitement de données et en création d'outils système. J'ai notamment consolidé mes connaissances en programmation Python orientée objet, en développement d'interfaces graphiques complexes avec PyQt5, et en automatisation de tâches d'administration système via PowerShell.</p>
+
+            <h2><i class="fas fa-check-double" style="color: var(--accent-color);"></i> Validation de la compétence "Programmer"</h2>
+            <p>Ce projet a exigé des compétences avancées en programmation Python :</p>
+            <ul>
+                <li>Algorithmes de parcours récursif d'arborescences avec pathlib</li>
+                <li>Tri et filtrage de datasets complexes via fonctions lambda</li>
+                <li>Manipulation précise de JSON (sérialisation/désérialisation)</li>
+                <li>Programmation orientée objet avec PyQt5 (classes Camembert, Legendes)</li>
+                <li>Gestion d'événements et callbacks pour l'interface graphique</li>
+                <li>Génération dynamique de scripts PowerShell</li>
+            </ul>
+
+            <h2><i class="fas fa-file-pdf" style="color: var(--accent-color);"></i> Présentation fin de projet</h2>
+            <p>Voici le fichier pdf qui nous a servie de support pour notre soutenance de fin de projet, présenté aux professeurs pour la notation final.</p>
+            
+            <div class="detail-item" style="display: flex; align-items: center; gap: 20px; border-style: dashed;">
+                <div style="font-size: 2.5rem; color: #ff4d4d; padding-left: 10px;">
+                    <i class="fas fa-file-lines"></i>
+                </div>
+                <div>
+                    <h4>Présentation final - Guillaume Baudrey</h4>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem; color: var(--secondary-text);">Format : PDF | Présentation final</p>
+                    <a href="images/presentation_1.pdf" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold; border: 1px solid var(--accent-color); padding: 8px 15px; border-radius: 5px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;" onmouseover="this.style.background='rgba(0, 212, 255, 0.1)'" onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-download"></i> Consulter la présentation de résultats
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

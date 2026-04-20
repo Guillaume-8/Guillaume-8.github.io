@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 102 | Guillaume Baudrey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: auto; }
+
+        .back-btn { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: 0.2s; }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-color); transform: translateX(-5px); }
+
+        .report-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
+        .header-report { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-report h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
+
+        .tech-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tech-pill { background: #21262d; border: 1px solid #30363d; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--secondary-text); }
+
+        h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin: 35px 0 15px 0; font-size: 1.5rem; }
+        p { color: var(--text-color); margin-bottom: 15px; }
+        ul { margin-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+
+        .status-box {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .code-snippet {
+            background: #000;
+            color: #50fa7b;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        .photo {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+
+        <div class="report-card">
+            <div class="header-report">
+                <span style="color: var(--accent-color); font-family: monospace;">[ COMPÉTENCE : ADMINISTRER ]</span>
+                <h1>SAE 102 : Administration d'un réseau d'entreprise</h1>
+                
+                <div class="tech-tags">
+                    <span class="tech-pill">Serveur Apache2</span>
+                    <span class="tech-pill">ProFTPd</span>
+                    <span class="tech-pill">Virtualisation (EVENG)</span>
+                    <span class="tech-pill">Protocoles Applicatifs</span>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-info-circle" style="color: var(--accent-color);"></i> Description</h2>
+            <p>Conception, déploiement et administration complète d'un réseau local pour une succursale de l'entreprise "Rudy and Theodor Company" incluant la gestion des équipements, services et sécurité.</p>
+
+            <div class="status-box">
+                <i class="fas fa-check-circle"></i> <strong>Services déployés :</strong>
+                <ul>
+                    <li>Hébergement d'un site web via <strong>Apache2</strong>.</li>
+                    <li>Transfert de fichiers via <strong>ProFTPd</strong>.</li>
+                    <li>Analyse de logs pour vérifier le bon fonctionnement.</li>
+                </ul>
+            </div>
+
+            <h2><i class="fas fa-database" style="color: var(--accent-color);"></i> Validation de la compétence "Administrer"</h2>
+               <p>Ce projet a démontré ma maîtrise de l'administration réseau à travers :</p>
+                <ul>
+                    <li><strong> Gestion des infrastructures :</strong></li>
+                    <ul>
+                        <li>Sélection et configuration des équipements Cisco (commutateurs 2960, routeurs 2800)</li>
+                        <li>Déploiement de l'architecture sous EVE-NG avec interconnexion des composants</li>
+                        <li>Supervision des performances et capacité des ports</li>
+                        <img src="images/topo.png" alt="topo" class="photo">
+                    </ul>
+                    <li><strong>Administration des services :</strong>
+                        <ul>
+                        <li>Configuration avancée des VLANs (Direction, Utilisateurs, Serveurs, Admin)</li>
+                        <li>Déploiement et migration des services DHCP (commutateur → serveur Linux)</li>
+                        <li>Mise en place du routage inter-VLAN avec gestion des sous-interfaces</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Sécurisation des accès :</strong>
+                        <ul>
+                        <li>Isolation des VLANs selon les rôles utilisateurs</li>
+                        <li>Restriction des accès administratifs (VLAN 40 exclusif)</li>
+                        <li>Implémentation des IP Helpers pour sécuriser le relais DHCP</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Gestion des configurations :</strong>
+                        <ul>
+                        <li>Définition du plan d'adressage IP (172.20.x.0/24) avec découpage en sous-réseaux</li>
+                        <li>Sauvegarde des configurations via <code>show running-config</code></li>
+                        <li>Centralisation des VLANs avec protocole VTP version 2</li>
+                        </ul>
+                    </li>
+                </ul>
+            <h2><i class="fas fa-code" style="color: var(--accent-color);"></i> Réalisations techniques significatives :</h2>
+            <ul>
+                <li>Déploiement d'une architecture redondante avec 2 commutateurs en mode Server/Client</li>
+                <li>Migration transparente du service DHCP vers un serveur Linux avec maintien de la continuité</li>
+                <li>Analyse et diagnostic des trames 802.1Q via Wireshark pour vérifier l'intégrité des communications</li>
+                <li>Configuration des politiques de spanning-tree pour la résilience réseau</li>
+            </ul>
+            
+            <h2><i class="fas fa-tools" style="color: var(--accent-color);"></i> Outils et technologies maîtrisés :</h2>
+            <ul>
+                <li>Environnement EVE-NG pour la simulation réseau</li>
+                <li>Commandes Cisco IOS (VLAN, trunking, routing, DHCP)</li>
+                <li>Services Linux (isc-dhcp-server)</li>
+                <li>Analyseurs de trafic (Wireshark)</li>
+            </ul>
+
+             <h2><i class="fas fa-certificate" style="color: var(--accent-color);"></i> Apprentissages clés en administration :</h2>
+            <p>Ce projet m'a permis de développer une expertise opérationnelle dans la gestion de réseau d'entreprise, notamment :</p>
+            <ul>
+                <li>La capacité à documenter et maintenir des configurations complexes (fichiers de config)</li>
+                <li>L'optimisation des ressources réseau via une segmentation VLAN rigoureuse</li>
+                <li>La mise en œuvre de procédures de migration de services sans interruption</li>
+                <li>L'implémentation de protocoles enterprise (VTP, spanning-tree) pour une gestion scalable</li>
+            </ul>
+            <img src="images/EVENG.webp" alt="EVENG" class="photo">
+        </div>
+    </div>
+
+</body>
+</html>
