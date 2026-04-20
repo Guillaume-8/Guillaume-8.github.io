@@ -9,7 +9,7 @@
         :root {
             --bg-color: #0a0b10;
             --card-bg: #161b22;
-            --accent-color: #00d4ff;
+            --accent-color: #ff4d4d; /* Changé en Rouge */
             --text-color: #e6edf3;
             --secondary-text: #8b949e;
             --code-purple: #bd93f9;
@@ -40,27 +40,6 @@
             border: 1px solid #44475a;
         }
 
-        .code-header {
-            background: #44475a;
-            padding: 10px 15px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #ff5555; } .yellow { background: #f1fa8c; } .green { background: #50fa7b; }
-
-        .code-content {
-            padding: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            color: #f8f8f2;
-        }
-
-        .keyword { color: #ff79c6; }
-        .function { color: #50fa7b; }
-        .comment { color: #6272a4; font-style: italic; }
-
         .cyber-impact {
             background: rgba(189, 147, 249, 0.1);
             border: 1px solid var(--code-purple);
@@ -88,48 +67,41 @@
             </div>
 
             <h2><i class="fas fa-terminal" style="color: var(--accent-color);"></i> Description du projet</h2>
-            <p>L'objectif de cette SAE était de concevoir un portfolio, pour cela nous avons eu le choix de le faire de nos propre moyens en le codant en html/css ou alors de le faire avec le avec le site web Mahara. J'ai choisi de le faire de mes propre mains et celui que vous liser actuelement en est la deuxieme version.</p>
+            <p>L'objectif de cette SAE était de concevoir un portfolio. J'ai choisi de le coder entièrement à la main en HTML/CSS, et la version que vous lisez actuellement en est la deuxième itération, optimisée et stylisée.</p>
 
             <h2><i class="fas fa-vial" style="color: var(--accent-color);"></i> Objectifs Techniques</h2>
             <ul>
-                <li><strong>Navigation pas ancre :</strong> sous la forme "#nom-ancre", cela sert au seuin d'une même page de ce déplacer rapidement. Dans le cadre de ma page web, les ancres était positionnées en bas de page qui permetaient de revenir en haut de page une fois la page lu.</li>
-                <li><strong>Liens interpages :</strong> On avais pour contrainte de n'utiliser qu'une seule page CSS pour l'ensemble du site et il fallais un minimum de 2 pages secondaires. J'en ai donc fait plusieurs (au nombre de 5) avec une seule page CSS.</li>
-                <li><strong>Intégration de liens :</strong> Sacahant que c'est un portfolio et qu'il contient des projet j'ai donc dû mettre des liens avec des preuves de réusite ou de problème pour attester du bon déroulé du projet.</li>
+                <li><strong>Navigation par ancre :</strong> Utilisation de liens internes pour faciliter la navigation fluide au sein des pages.</li>
+                <li><strong>Architecture Multi-pages :</strong> Gestion de 5 pages distinctes reliées à une feuille de style CSS unique et cohérente.</li>
+                <li><strong>Intégration de ressources :</strong> Mise en place de liens de téléchargement et de preuves de réalisation.</li>
             </ul>
-
-            <h2><i class="fas fa-exclamation" style="color: var(--accent-color);"></i> Apprentissages clés</h2>
-            <p>Ce projet m'a permis de consolider mes compétences en développement front-end, particulièrement dans la création d'interfaces structurées et accessibles. J'ai appris à organiser un projet multi-pages avec une architecture cohérente et une navigation intuitive, tout en respectant les bonnes pratiques du web sémantique.</p>
 
             <div class="cyber-impact">
                 <h4 style="color: var(--code-purple); margin-bottom: 10px;"><i class="fas fa-user-ninja"></i> Lien avec la Cybersécurité</h4>
                 <p>Apprendre à programmer proprement est indispensable pour la Cyber :</p>
                 <ul style="list-style: none;">
-                    <li><i class="fas fa-check" style="color: var(--code-purple);"></i> <strong>Sécurisation des entrées :</strong> Éviter les plantages ou les injections via des contrôles stricts des données.</li>
+                    <li><i class="fas fa-check" style="color: var(--code-purple);"></i> <strong>Sécurisation des entrées :</strong> Compréhension des structures de données pour prévenir les vulnérabilités applicatives.</li>
                 </ul>
             </div>
 
-            <h2><i class="fas fa-tasks" style="color: var(--accent-color);"></i> Validation de la compétence "Programmer"</h2>
-            <p>Ce projet a démontré ma maîtrise des fondamentaux de la programmation web front-end. J'ai implémenté :</p><br>
-            <ul>
-                <li>Une structure HTML5 sémantique rigoureuse avec balises <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code></li>
-                <li>Des algorithmes de navigation complexes via système d'ancres intra/inter-pages</li>
-                <li>Un design responsive utilisant Flexbox pour la mise en page des compétences</li>
-                <li>Des fonctions JavaScript pour les interactions (mailto, Google Maps)</li>
-                <li>Une feuille de style CSS unique gérant l'ensemble du site</li>
-            </ul>
-
             <h2><i class="fas fa-folder-open" style="color: var(--accent-color);"></i> Dossier zip de mon projet</h2>
-            <p>Je vais mettre à votre disposition le dossier zip qui contient la v1 de mon projet de portefolio.</p>
+            <p>Vous pouvez télécharger ci-dessous l'archive complète contenant le code source de la première version de mon portfolio.</p>
             
-            <div class="detail-item" style="display: flex; align-items: center; gap: 20px; border-style: dashed;">
-                <div style="font-size: 2.5rem; color: #ff4d4d; padding-left: 10px;">
-                    <i class="fas fa-folder"></i>
+            <div class="detail-item" style="display: flex; align-items: center; gap: 20px; border: 2px dashed #30363d; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <div style="font-size: 2.5rem; color: var(--accent-color);">
+                    <i class="fas fa-file-archive"></i>
                 </div>
                 <div>
-                    <h4>Feuille de résultats - Guillaume Baudrey</h4>
-                    <p style="margin-bottom: 10px; font-size: 0.9rem; color: var(--secondary-text);">Format : ZIP | dossier du code source</p>
-                    <a href="https://github.com/Guillaume-8/ton-depot/releases/download/v1.0.0/ton-projet.zip" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold; border: 1px solid var(--accent-color); padding: 8px 15px; border-radius: 5px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;" onmouseover="this.style.background='rgba(255, 77, 77, 0.1)'" onmouseout="this.style.background='transparent'">
-                        <i class="fas fa-download"></i> Consulter le dossier zip
+                    <h4>Archive Source - Portfolio V1</h4>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem; color: var(--secondary-text);">Format : ZIP | Hébergé sur GitHub Releases</p>
+                    
+                    <a href="https://github.com/Guillaume-8/Guillaume-8.github.io/releases/tag/v1/Guillaume-8.github.io-main.zip" 
+                       download 
+                       target="_blank" 
+                       style="color: var(--accent-color); text-decoration: none; font-weight: bold; border: 1px solid var(--accent-color); padding: 8px 15px; border-radius: 5px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;" 
+                       onmouseover="this.style.background='rgba(255, 77, 77, 0.1)'" 
+                       onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-download"></i> Télécharger le dossier zip
                     </a>
                 </div>
             </div>
