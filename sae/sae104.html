@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 104 | Guillaume Baudrey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+            --code-purple: #bd93f9;
+            --code-yellow: #f1fa8c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: auto; }
+
+        .back-btn { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: 0.2s; }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-color); transform: translateX(-5px); }
+
+        .report-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .header-report { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-report h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
+
+        .tech-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tech-pill { background: #21262d; border: 1px solid #30363d; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--code-yellow); font-weight: bold; }
+
+        h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin: 35px 0 15px 0; font-size: 1.5rem; }
+
+        .code-window {
+            background: #282a36;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow: hidden;
+            border: 1px solid #44475a;
+        }
+
+        .code-header {
+            background: #44475a;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5555; } .yellow { background: #f1fa8c; } .green { background: #50fa7b; }
+
+        .code-content {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #f8f8f2;
+        }
+
+        .keyword { color: #ff79c6; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; font-style: italic; }
+
+        .cyber-impact {
+            background: rgba(189, 147, 249, 0.1);
+            border: 1px solid var(--code-purple);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+
+        <div class="report-card">
+            <div class="header-report">
+                <span style="color: var(--accent-color); font-family: monospace;">[ COMPÉTENCE : PROGRAMMER ]</span>
+                <h1>SAE 104 : Création d'un site web portfolio</h1>
+                
+                <div class="tech-tags">
+                    <span class="tech-pill">Python 3</span>
+                    <span class="tech-pill">HTML3/CSS</span>
+                    <span class="tech-pill">JavaScript</span>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-terminal" style="color: var(--accent-color);"></i> Description du projet</h2>
+            <p>L'objectif de cette SAE était de concevoir un portfolio, pour cela nous avons eu le choix de le faire de nos propre moyens en le codant en html/css ou alors de le faire avec le avec le site web Mahara. J'ai choisi de le faire de mes propre mains et celui que vous liser actuelement en est la deuxieme version.</p>
+
+            <h2><i class="fas fa-vial" style="color: var(--accent-color);"></i> Objectifs Techniques</h2>
+            <ul>
+                <li><strong>Navigation pas ancre :</strong> sous la forme "#nom-ancre", cela sert au seuin d'une même page de ce déplacer rapidement. Dans le cadre de ma page web, les ancres était positionnées en bas de page qui permetaient de revenir en haut de page une fois la page lu.</li>
+                <li><strong>Liens interpages :</strong> On avais pour contrainte de n'utiliser qu'une seule page CSS pour l'ensemble du site et il fallais un minimum de 2 pages secondaires. J'en ai donc fait plusieurs (au nombre de 5) avec une seule page CSS.</li>
+                <li><strong>Intégration de liens :</strong> Sacahant que c'est un portfolio et qu'il contient des projet j'ai donc dû mettre des liens avec des preuves de réusite ou de problème pour attester du bon déroulé du projet.</li>
+            </ul>
+
+            <h2><i class="fas fa-exclamation" style="color: var(--accent-color);"></i> Apprentissages clés</h2>
+            <p>Ce projet m'a permis de consolider mes compétences en développement front-end, particulièrement dans la création d'interfaces structurées et accessibles. J'ai appris à organiser un projet multi-pages avec une architecture cohérente et une navigation intuitive, tout en respectant les bonnes pratiques du web sémantique.</p>
+
+            <div class="cyber-impact">
+                <h4 style="color: var(--code-purple); margin-bottom: 10px;"><i class="fas fa-user-ninja"></i> Lien avec la Cybersécurité</h4>
+                <p>Apprendre à programmer proprement est indispensable pour la Cyber :</p>
+                <ul style="list-style: none;">
+                    <li><i class="fas fa-check" style="color: var(--code-purple);"></i> <strong>Sécurisation des entrées :</strong> Éviter les plantages ou les injections via des contrôles stricts des données.</li>
+                </ul>
+            </div>
+
+            <h2><i class="fas fa-tasks" style="color: var(--accent-color);"></i> Validation de la compétence "Programmer"</h2>
+            <p>Ce projet a démontré ma maîtrise des fondamentaux de la programmation web front-end. J'ai implémenté :</p><br>
+            <ul>
+                <li>Une structure HTML5 sémantique rigoureuse avec balises <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code></li>
+                <li>Des algorithmes de navigation complexes via système d'ancres intra/inter-pages</li>
+                <li>Un design responsive utilisant Flexbox pour la mise en page des compétences</li>
+                <li>Des fonctions JavaScript pour les interactions (mailto, Google Maps)</li>
+                <li>Une feuille de style CSS unique gérant l'ensemble du site</li>
+            </ul>
+
+            <h2><i class="fas fa-folder-open" style="color: var(--accent-color);"></i> Dossier zip de mon projet</h2>
+            <p>Je vais mettre à votre disposition le dossier zip qui contient la v1 de mon projet de portefolio.</p>
+            
+            <div class="detail-item" style="display: flex; align-items: center; gap: 20px; border-style: dashed;">
+                <div style="font-size: 2.5rem; color: #ff4d4d; padding-left: 10px;">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <div>
+                    <h4>Feuille de résultats - Guillaume Baudrey</h4>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem; color: var(--secondary-text);">Format : ZIP | dossier du code source</p>
+                    <a href="Guillaume-8.github.io-main.zip" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold; border: 1px solid var(--accent-color); padding: 8px 15px; border-radius: 5px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;" onmouseover="this.style.background='rgba(0, 212, 255, 0.1)'" onmouseout="this.style.background='transparent'">
+                        <i class="fas fa-download"></i> Consulter le dossier zip
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

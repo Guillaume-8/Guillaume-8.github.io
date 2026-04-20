@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 301 | Guillaume Baudrey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: auto; }
+
+        .back-btn { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: 0.2s; }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-color); transform: translateX(-5px); }
+
+        .report-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .header-report { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-report h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
+
+        .tech-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tech-pill { background: #21262d; border: 1px solid #30363d; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--accent-color); font-weight: bold; }
+
+        h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin: 35px 0 15px 0; font-size: 1.5rem; }
+        
+        .infra-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .infra-item {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 2px solid var(--accent-color);
+        }
+
+        .infra-item h4 { margin-bottom: 10px; color: var(--accent-color); }
+
+        .command-box {
+            background: #000;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            border: 1px solid #44475a;
+            overflow-x: auto;
+        }
+
+        .cyber-note {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+
+        <div class="report-card">
+            <div class="header-report">
+                <span style="color: var(--accent-color); font-family: monospace;">[ NIV. AVANCÉ : IOT & FULLSTACK ]</span>
+                <h1>SAE 301 : Prise Connectée Intelligente Wifi</h1>
+                
+                <div class="tech-tags">
+                    <span class="tech-pill">ESP8266</span>
+                    <span class="tech-pill">MQTT (Mosquitto)</span>
+                    <span class="tech-pill">Raspberry Pi</span>
+                    <span class="tech-pill">Android / Web</span>
+                    <span class="tech-pill">Électronique (EasyEDA)</span>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-microchip" style="color: var(--accent-color);"></i> Architecture & Design</h2>
+            <p>Ce projet consiste à concevoir une prise électrique intelligente pilotable à distance. L'architecture repose sur un écosystème IoT complet : une carte électronique sur mesure, un serveur Web sur Raspberry Pi et une application mobile pour le contrôle utilisateur.</p>
+
+            <div class="infra-grid">
+                <div class="infra-item">
+                    <h4>Matériel (Hardware)</h4>
+                    <p>Conception du PCB sur <strong>EasyEDA</strong> intégrant un module ESP8266, un capteur de température <strong>DS18B20</strong> et un relais pour la commande de puissance.</p>
+                </div>
+                <div class="infra-item">
+                    <h4>Communication IoT</h4>
+                    <p>Utilisation du protocole <strong>MQTT</strong> via un broker (Mosquitto) pour assurer la liaison en temps réel entre la prise et les interfaces de commande.</p>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-terminal" style="color: var(--accent-color);"></i> Flux de données MQTT</h2>
+            <p>Aperçu des messages échangés sur le broker pour piloter la prise et remonter la température :</p>
+            <div class="command-box">
+                # Souscription aux états de la prise<br>
+                $ mosquitto_sub -h localhost -t "maison/prise1/etat"<br>
+                ON<br><br>
+                # Lecture de la température envoyée par le DS18B20<br>
+                $ mosquitto_sub -h localhost -t "maison/prise1/temp"<br>
+                22.5°C
+            </div>
+
+            <div class="cyber-note">
+                <i class="fas fa-shield-alt"></i> <strong>Dimension Cybersécurité :</strong> Le projet intègre la sécurisation des accès aux interfaces Web et Android. J'ai mis en œuvre la sécurisation du transfert de données côté Internet et l'utilisation d'un broker privé pour isoler les flux de commande.
+            </div>
+
+            <h2><i class="fas fa-check-double" style="color: var(--accent-color);"></i> Compétences Validées</h2>
+            <ul>
+                <li><strong>Développement Fullstack :</strong> Création d'un serveur Web sur Raspberry Pi et d'une application Android avec gestion de plages horaires.</li>
+                <li><strong>Ingénierie Système :</strong> Configuration de l'ESP8266 en mode AP (Access Point) pour la configuration initiale du Wifi.</li>
+                <li><strong>Notification & Alerting :</strong> Mise en place d'alertes SMS/Mail via Pushbullet/Gammu en cas de dépassement de seuil de température.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
