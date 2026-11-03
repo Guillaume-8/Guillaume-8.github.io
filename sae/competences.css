@@ -1,0 +1,45 @@
+.competency-section {
+    margin-top: 40px;
+    padding-top: 5px;
+    border-top: 1px solid #30363d;
+}
+
+.competency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.competency-card {
+    padding: 18px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-left: 3px solid var(--accent-color);
+    border-radius: 8px;
+}
+
+.competency-card h3 {
+    margin: 6px 0 10px;
+    color: var(--accent-color);
+    font-size: 1.05rem;
+}
+
+.competency-card p {
+    margin-bottom: 0;
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+}
+
+.competency-level {
+    color: var(--secondary-text);
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.competency-note {
+    color: var(--secondary-text);
+    font-size: 0.85rem;
+}
