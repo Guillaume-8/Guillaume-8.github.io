@@ -58,7 +58,7 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 12px;
-            margin: 40px 0;
+            margin: 40px 0 100px;
             position: sticky;
             top: 20px;
             z-index: 100;
@@ -166,12 +166,12 @@
 
     <div class="container" id="portfolio">
         <div class="filter-buttons">
-            <button class="btn-filter active" onclick="filterSelection('all')">Tous les projets</button>
-            <button class="btn-filter" onclick="filterSelection('admin')">Administrer</button>
-            <button class="btn-filter" onclick="filterSelection('connect')">Connecter</button>
-            <button class="btn-filter" onclick="filterSelection('program')">Programmer</button>
-            <button class="btn-filter" onclick="filterSelection('cyber')">CyberSécurité</button>
-            <button class="btn-filter" onclick="filterSelection('experience')">Expérience</button>
+            <button class="btn-filter active" data-filter="all" onclick="filterSelection('all')">Tous les projets</button>
+            <button class="btn-filter" data-filter="admin" onclick="filterSelection('admin')">Administrer</button>
+            <button class="btn-filter" data-filter="connect" onclick="filterSelection('connect')">Connecter</button>
+            <button class="btn-filter" data-filter="program" onclick="filterSelection('program')">Programmer</button>
+            <button class="btn-filter" data-filter="cyber" onclick="filterSelection('cyber')">CyberSécurité</button>
+            <button class="btn-filter" data-filter="experience" onclick="filterSelection('experience')">Expérience Professionnelle</button>
         </div>
 
         <div class="projects-grid">
@@ -180,7 +180,7 @@
                 <a href="images/CV FR.pdf" target="_blank" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                     <div class="cv-header">
                         <i class="fas fa-file-pdf" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                        <h3>Mon Curriculum Vitae [FR]</h3>
+                        <h3>CV [FR]</h3>
                     </div>
                     
                     <p style="color: var(--secondary-text); font-size: 0.9rem; margin-top: 10px;">
@@ -197,7 +197,7 @@
                 <a href="images/CV ANG.pdf" target="_blank" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                     <div class="cv-header">
                         <i class="fas fa-file-pdf" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
-                        <h3>Mon Curriculum Vitae [ANG]</h3>
+                        <h3>CV [ANG]</h3>
                     </div>
                     
                     <p style="color: var(--secondary-text); font-size: 0.9rem; margin-top: 10px;">
@@ -339,14 +339,18 @@
     </footer>
 
     <script>
-        function filterSelection(c) {
+        const portfolioStateKey = "portfolio-return-state";
+        let selectedFilter = "all";
+
+        function filterSelection(c, centerProjects = true) {
+            selectedFilter = c;
             let x = document.getElementsByClassName("project-card");
             let btns = document.getElementsByClassName("btn-filter");
             
             // Mise à jour de la classe active sur les boutons
             for (let i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
-                if (btns[i].innerText.toLowerCase().includes(c.toLowerCase()) || (c === 'all' && btns[i].innerText.includes('Tous'))) {
+                if (btns[i].dataset.filter === c) {
                     btns[i].classList.add("active");
                 }
             }
@@ -358,7 +362,50 @@
                     x[i].classList.remove("hidden");
                 }
             }
+
+            if (centerProjects) {
+                document.body.style.paddingBottom = "0px";
+                const firstVisibleProject = document.querySelector(".project-card:not(.hidden)");
+                if (firstVisibleProject) {
+                    const projectBounds = firstVisibleProject.getBoundingClientRect();
+                    const targetScroll = window.scrollY + projectBounds.top + projectBounds.height / 2 - window.innerHeight / 2;
+                    const maximumScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    const extraScroll = targetScroll - maximumScroll;
+
+                    if (extraScroll > 0) {
+                        document.body.style.paddingBottom = `${extraScroll}px`;
+                    }
+
+                    firstVisibleProject.scrollIntoView({
+                        behavior: "auto",
+                        block: "center"
+                    });
+                }
+            }
         }
+
+        document.querySelectorAll('.project-card a[href^="sae/"]').forEach(link => {
+            link.addEventListener("click", () => {
+                sessionStorage.setItem(portfolioStateKey, JSON.stringify({
+                    scrollY: window.scrollY,
+                    filter: selectedFilter
+                }));
+            });
+        });
+
+        window.addEventListener("pageshow", () => {
+            const savedState = sessionStorage.getItem(portfolioStateKey);
+            if (!savedState) {
+                return;
+            }
+
+            sessionStorage.removeItem(portfolioStateKey);
+            const state = JSON.parse(savedState);
+            if (typeof state.scrollY === "number" && typeof state.filter === "string") {
+                filterSelection(state.filter, false);
+                window.scrollTo(0, state.scrollY);
+            }
+        });
     </script>
 </body>
 </html>
