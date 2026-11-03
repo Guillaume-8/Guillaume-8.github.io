@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 5.01 | Suivi de véhicule GNSS &amp; LoRaWAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="competences.css">
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff;
+            --text-color: #e6edf3;
+            --secondary-text: #8b949e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: auto; }
+        .back-btn { color: var(--accent-color); text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: 0.2s; }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-color); transform: translateX(-5px); }
+        .report-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .header-report { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-report h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
+        .tech-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tech-pill { background: #21262d; border: 1px solid #30363d; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--accent-color); font-weight: bold; }
+        h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin: 35px 0 15px; font-size: 1.5rem; }
+        p { margin-bottom: 15px; }
+        .infra-grid, .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .infra-item {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 2px solid var(--accent-color);
+        }
+        .infra-item h3 { margin-bottom: 8px; color: var(--accent-color); font-size: 1.05rem; }
+        .infra-item p { color: var(--secondary-text); margin-bottom: 0; }
+        .project-figure { margin: 0; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; overflow: hidden; }
+        .preview-trigger { position: relative; display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+        .preview-trigger::after {
+            content: "Cliquer pour agrandir";
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: rgba(10, 11, 16, 0.85);
+            color: var(--text-color);
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .preview-trigger:hover::after, .preview-trigger:focus-visible::after { opacity: 1; }
+        .preview-trigger:focus-visible { outline: 2px solid var(--accent-color); outline-offset: -2px; }
+        .project-figure img { display: block; width: 100%; height: 260px; object-fit: cover; }
+        .project-figure figcaption { padding: 12px 15px; color: var(--secondary-text); font-size: 0.9rem; }
+        .project-figure figcaption strong { color: var(--text-color); }
+        .image-lightbox {
+            width: min(94vw, 1200px);
+            max-width: none;
+            max-height: 92vh;
+            padding: 24px;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+        .image-lightbox[open] { margin: auto; }
+        .image-lightbox::backdrop { background: rgba(0, 0, 0, 0.85); }
+        .lightbox-close {
+            display: block;
+            margin: 0 0 12px auto;
+            padding: 8px 12px;
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .lightbox-image { display: block; max-width: 100%; max-height: 78vh; margin: auto; object-fit: contain; }
+        .lightbox-caption { margin: 12px 0 0; color: var(--secondary-text); text-align: center; }
+        .steps { margin: 20px 0 20px 25px; }
+        .steps li { margin-bottom: 10px; padding-left: 5px; }
+        .project-note {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .download-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            background: #0d1117;
+        }
+        .download-icon { color: var(--accent-color); font-size: 2rem; }
+        .download-card p { margin: 5px 0 12px; color: var(--secondary-text); }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .download-btn:hover, .download-btn:focus-visible { background: var(--accent-color); color: var(--bg-color); }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 12px; }
+            .report-card { padding: 24px 18px; }
+            .header-report h1 { font-size: 1.8rem; }
+            .project-figure img { height: auto; max-height: 300px; object-fit: contain; }
+            .download-card { align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+
+        <main class="report-card">
+            <header class="header-report">
+                <span style="color: var(--accent-color); font-family: monospace;">[ COMPÉTENCE : PROGRAMMER / IOT ]</span>
+                <h1>Suivi de véhicule par GNSS et LoRaWAN</h1>
+                <div class="tech-tags" aria-label="Technologies du projet">
+                    <span class="tech-pill">GNSS / GPS</span>
+                    <span class="tech-pill">LoRaWAN</span>
+                    <span class="tech-pill">The Things Network</span>
+                    <span class="tech-pill">MQTT</span>
+                    <span class="tech-pill">Node-RED</span>
+                    <span class="tech-pill">Raspberry Pi</span>
+                </div>
+            </header>
+
+            <section aria-labelledby="objectif-title">
+                <h2 id="objectif-title"><i class="fas fa-location-dot" style="color: var(--accent-color);"></i> Objectif du projet</h2>
+                <p>Cette SAE consiste à concevoir une solution embarquée pour transmettre les coordonnées GNSS d’un véhicule par LoRaWAN, puis à afficher sa position sur une carte. Le suivi doit limiter la consommation d’énergie et prévenir l’utilisateur lorsque le véhicule se déplace.</p>
+                <p>Le travail progresse par validations : émission des coordonnées, remontée via TTN, décodage du payload, affichage cartographique et notifications. La mise en place d’un serveur réseau LoRaWAN propre constitue une évolution prévue dans le sujet.</p>
+            </section>
+
+            <section aria-labelledby="architecture-title">
+                <h2 id="architecture-title"><i class="fas fa-diagram-project" style="color: var(--accent-color);"></i> Architecture et fonctionnement</h2>
+                <div class="infra-grid">
+                    <article class="infra-item">
+                        <h3><i class="fas fa-microchip"></i> Équipement embarqué</h3>
+                        <p>Un End-Device équipé d’un GNSS récupère la position du véhicule. L’accéléromètre permet de détecter le mouvement et de réveiller le système après une période de veille.</p>
+                    </article>
+                    <article class="infra-item">
+                        <h3><i class="fas fa-tower-broadcast"></i> Transport LoRaWAN</h3>
+                        <p>Les coordonnées sont envoyées par radio vers une passerelle, puis acheminées par le réseau LoRaWAN. Le projet utilise TTN pour les premières validations.</p>
+                    </article>
+                    <article class="infra-item">
+                        <h3><i class="fas fa-code-branch"></i> Traitement MQTT</h3>
+                        <p>Node-RED reçoit les messages MQTT, décode les données GNSS et prépare les informations nécessaires à l’affichage et aux notifications.</p>
+                    </article>
+                    <article class="infra-item">
+                        <h3><i class="fas fa-map-location-dot"></i> Visualisation et alertes</h3>
+                        <p>Une carte web représente la position du véhicule. Le flux prévoit des alertes de déplacement, avec une simulation SMS et une notification Pushbullet visibles dans le prototype.</p>
+                    </article>
+                </div>
+
+                <ol class="steps">
+                    <li>Le capteur GNSS fournit la latitude et la longitude.</li>
+                    <li>L’End-Device encode les coordonnées et transmet un message LoRaWAN.</li>
+                    <li>TTN relaie le message vers MQTT ; Node-RED traite le payload.</li>
+                    <li>La position est affichée sur la carte et une notification peut être déclenchée.</li>
+                </ol>
+            </section>
+
+            <section aria-labelledby="realisations-title">
+                <h2 id="realisations-title"><i class="fas fa-images" style="color: var(--accent-color);"></i> Matériel et prototype</h2>
+                <div class="evidence-grid">
+                    <figure class="project-figure">
+                        <button class="preview-trigger" type="button" aria-label="Agrandir la photo du matériel de prototypage">
+                            <img src="../images/sae501-gnss-materiel.jpg" alt="Matériel de prototypage GNSS et LoRaWAN installé sur un ordinateur">
+                        </button>
+                        <figcaption><strong>Prototype matériel</strong> — environnement de test de l’End-Device et du suivi GNSS.</figcaption>
+                    </figure>
+                    <figure class="project-figure">
+                        <button class="preview-trigger" type="button" aria-label="Agrandir la capture Node-RED et la carte">
+                            <img src="../images/sae501-nodered-carte.png" alt="Flux Node-RED et carte affichant la position d’un véhicule">
+                        </button>
+                        <figcaption><strong>Traitement et visualisation</strong> — flux Node-RED, notifications et position sur carte.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <aside class="project-note">
+                <i class="fas fa-code"></i>
+                <strong>Point de vigilance cybersécurité :</strong> les positions de véhicule sont des données sensibles. La mise en production doit protéger les identifiants des équipements et des services, limiter l’accès à la carte, sécuriser les échanges et éviter de publier des clés ou des identifiants dans le portfolio.
+            </aside>
+
+            <section class="competency-section" aria-labelledby="competencies-title">
+                <h2 id="competencies-title"><i class="fas fa-graduation-cap" style="color: var(--accent-color);"></i> Référentiel BUT R&amp;T — parcours Cybersécurité, BUT 3</h2>
+                <p>Les liens ci-dessous distinguent les compétences directement mises en œuvre des pistes cybersécurité à approfondir. Ils ne constituent pas, à eux seuls, une validation institutionnelle des apprentissages critiques.</p>
+                <div class="competency-grid">
+                    <article class="competency-card">
+                        <span class="competency-level">Compétence principalement mobilisée · BUT 3</span>
+                        <h3>C2 — Connecter les entreprises et les usagers</h3>
+                        <p><strong>Apprentissage critique AC32.01 :</strong> déployer un système de communication pour l’entreprise.</p>
+                        <p>Le projet met en œuvre une chaîne de communication IoT : End-Device, liaison LoRaWAN, passerelle, réseau TTN et transport MQTT.</p>
+                    </article>
+                    <article class="competency-card">
+                        <span class="competency-level">Compétence complémentaire · BUT 3</span>
+                        <h3>C3 — Créer des outils et applications informatiques pour les R&amp;T</h3>
+                        <p><strong>Composantes mobilisées :</strong> CE3.04 — choisir les outils de développement adaptés ; CE3.05 — intégrer les problématiques de sécurité.</p>
+                        <p>Le flux Node-RED traite les messages reçus et alimente l’interface cartographique ainsi que les notifications.</p>
+                    </article>
+                    <article class="competency-card">
+                        <span class="competency-level">Lien cybersécurité à approfondir · BUT 3</span>
+                        <h3>C4 — Administrer un système d’information sécurisé</h3>
+                        <p>Pour relier le projet au parcours Cyber, il reste à documenter et vérifier la protection des accès, des secrets MQTT/API et des données de géolocalisation, notamment dans le scénario de déploiement d’un LNS autonome.</p>
+                    </article>
+                    <article class="competency-card">
+                        <span class="competency-level">Lien cybersécurité à approfondir · BUT 3</span>
+                        <h3>C5 — Surveiller un système d’information sécurisé</h3>
+                        <p><strong>AC35.01Cyber :</strong> surveiller l’activité du système d’information.</p>
+                        <p>Les remontées et alertes du prototype peuvent servir de base à une supervision, mais la surveillance de positions ne remplace pas la détection d’incidents de sécurité. Ce volet doit être complété et évalué séparément.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section aria-labelledby="download-title">
+                <h2 id="download-title"><i class="fas fa-file-arrow-down" style="color: var(--accent-color);"></i> Sujet de la SAE</h2>
+                <div class="download-card">
+                    <i class="fas fa-file-pdf download-icon" aria-hidden="true"></i>
+                    <div>
+                        <strong>SAE 5.01 — Traçage de véhicule par GNSS</strong>
+                        <p>PDF du sujet fourni, avec les identifiants retirés pour sa diffusion publique.</p>
+                        <a class="download-btn" href="../images/sae501-sujet.pdf" download="SAE501-sujet.pdf">
+                            <i class="fas fa-download" aria-hidden="true"></i> Télécharger le sujet (PDF)
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <dialog class="image-lightbox" aria-labelledby="lightbox-caption">
+        <button class="lightbox-close" type="button" aria-label="Fermer l’image agrandie">
+            <i class="fas fa-xmark" aria-hidden="true"></i> Fermer
+        </button>
+        <img class="lightbox-image" alt="">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+    </dialog>
+
+    <script>
+        const lightbox = document.querySelector(".image-lightbox");
+        const lightboxImage = lightbox.querySelector(".lightbox-image");
+        const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+        let activePreviewTrigger;
+
+        document.querySelectorAll(".preview-trigger").forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                const image = trigger.querySelector("img");
+                activePreviewTrigger = trigger;
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                lightboxCaption.textContent = trigger.nextElementSibling.textContent;
+                lightbox.showModal();
+            });
+        });
+
+        lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+        lightbox.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.open) {
+                event.preventDefault();
+                lightbox.close();
+            }
+        });
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                lightbox.close();
+            }
+        });
+        lightbox.addEventListener("close", () => {
+            const trigger = activePreviewTrigger;
+            activePreviewTrigger = undefined;
+            window.setTimeout(() => trigger?.focus(), 0);
+        });
+    </script>
+</body>
+</html>
